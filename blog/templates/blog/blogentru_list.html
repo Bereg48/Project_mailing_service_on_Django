@@ -1,0 +1,33 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<div class="col-12 md-5" >
+    <a class="btn btn-outline-primary" href="{% url 'blog:create' %}">Добавить блог</a>
+</div>
+{% for object in object_list %}
+<div class="col-md-4">
+    <div class="card h-95 w-90 text-bg-primary mb-4 box-shadow" style="max-width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{ object.title }}</h5>
+            <h6 class="card-title">Описание</h6>
+            <p class="card-text">{{ object.content }}</p>
+            <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="width: 16rem;">
+                    <a href="{% url 'blog:view' object.pk %}"
+                       class="btn btn-success">View</a>
+                    <a href="{% url 'blog:edit' object.pk %}" type="button"
+                       class="btn btn-warning">Edit</a>
+                    <a href="{% url 'blog:delete' object.pk %}" type="button"
+                       class="btn btn-danger">Delete</a>
+            </div>
+            {% if object.publication_attribute %}
+            <a class="btn btn-warning" href="{% url 'blog:toggle_activity' object.pk %}">Negative</a>
+            {% else %}
+            <a class="btn btn-success" href="{% url 'blog:toggle_activity' object.pk %}">Positive</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endfor %}
+</div>
+{% endblock %}

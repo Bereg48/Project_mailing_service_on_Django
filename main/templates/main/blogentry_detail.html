@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+{% load my_tags %}
+{% for object in object_list %}
+<div class="col-md-4">
+    <div class="card h-95 w-90 text-bg-primary mb-4 box-shadow" style="max-width: 18rem;">
+        <!--        <img src="/media/{{ object.photo }}" />-->
+        <img src="{{ object.photo|mediapath }}"/>
+        <div class="card-body">
+            <h5 class="card-title">{{ object.name }}</h5>
+            <h6 class="card-title">Описание</h6>
+            <p class="card-text">{{ object.description}}</p>
+            <h6 class="card-title">Цена</h6>
+            <p class="card-text">{{ object.price}} руб.</p>
+            {% for version in object.product_ver.all %}
+            {% if version.name_current_version %}
+            <b>Версия:</b> {{ version.name_version }}
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endfor %}
+</div>
+</div>
+{% endblock %}

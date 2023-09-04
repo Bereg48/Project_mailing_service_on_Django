@@ -1,0 +1,34 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+
+<div class="col-12 mb-5">
+    {% if user.is_superuser %}
+    <a class="btn btn-primary" href="{% url 'main:create_client' %}"
+       class="btn btn-success">Добавить клиента</a>
+    {% endif %}
+</div>
+{% load my_tags %}
+
+{% for object in object_list %}
+<div class="col-md-4">
+    <div class="card h-95 w-90 text-bg-primary mb-4 box-shadow" style="max-width: 18rem;">
+        <!--        <img src="/media/{{ object.photo }}" />-->
+        <img src="{{ object.photo|mediapath }}"/>
+        <div class="card-body">
+            <h5 class="card-title">{{ object.name }}</h5>
+            <h6 class="card-title">Описание</h6>
+            <p class="card-text">{{ object.email }}</p>
+            <div class="btn-group">
+                <a href="{% url 'main:client_card' object.pk %}"
+                   class="btn btn-success">Подробнее</a>
+                <a href="{% url 'main:client_update' object.pk %}"
+                   class="btn btn-success">Редактировние</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<div class="col-12">
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">
+                        Блог "{{ object.title }}"</h5>
+                </div>
+                <div class="card-body">
+                    <p>
+                        "{{ object.content }}"
+                    <div class="card-footer>">
+                        Содержимое: {{ object.content }}
+                    </div>
+                    </p>
+                    <p>
+                        "{{ object.creation_date }}"
+                    <div class="card-footer>">
+                        Просмотры: {{ object.number_views }}
+                    </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

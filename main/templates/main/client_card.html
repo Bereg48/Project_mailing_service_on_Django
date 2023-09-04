@@ -1,0 +1,25 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+{% load my_tags %}
+{% for object in object_list %}
+<div class="col-md-4">
+    <div class="card h-95 w-90 text-bg-primary mb-4 box-shadow" style="max-width: 18rem;">
+        <!--        <img src="/media/{{ object.photo }}" />-->
+        <img src="{{ object.photo|mediapath }}"/>
+        <div class="card-body">
+            <h5 class="card-title">{{ object.email }}</h5>
+            <h6 class="card-title">ФИО</h6>
+            <p class="card-text">{{ object.name}}</p>
+            <h6 class="card-title">Комментарий</h6>
+            <p class="card-text">{{ object.comment}} руб.</p>
+            <h6 class="card-title">периодичность рассылки</h6>
+            <p class="card-text">{{ object.frequency}}</p>
+
+        </div>
+    </div>
+</div>
+{% endfor %}
+</div>
+</div>
+{% endblock %}

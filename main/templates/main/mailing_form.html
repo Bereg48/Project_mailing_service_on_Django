@@ -1,0 +1,48 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div class="col-12">
+    <form class="row" method="post" enctype="multipart/form-data">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                         {% if object %}
+                        Редактирование
+                        {% else %}
+                        Создание
+                        {% endif %}
+                    </h3>
+                </div>
+                <div class="card-body">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-success">Сохранить</button>
+                </div>
+                <div class="card-footer"></div>
+            </div>
+        </div>
+</div>
+<div class="col-6">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">
+
+                {% if object %}
+                Версии продукта
+                 {% else %}
+                Первоначальное создание продукта
+                {% endif %}
+            </h3>
+        </div>
+        <div class="card-body">
+            {{ formset.management_form }}
+            {% for form in formset.forms %}
+            {{ form.as_p }}
+            {% endfor %}
+        </div>
+        <div class="card-footer"></div>
+    </div>
+    </form>
+</div>
+{% endblock %}
